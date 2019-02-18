@@ -19,15 +19,9 @@ In drunomics/drupal-project, all setup steps are taken care already. For others:
     $split = getenv('PHAPP_ENV_MODE');
     $config['config_split.config_split.' . $split]['status'] = TRUE;
 
+2. Export some config split configuration that will set further config per environment in your
+   config sync directory, name the split like the environment mode, "development", or "production".
+   
+   You may use drunomics/dsk-config-split for creating suiting config.
 
-2.  
-
-
-## Usage
-
-- Install and enable the module - on all environments.
-- Add development modules as needed to your site's `config_split.config_split.development.yml`:
-
-    module:
-      default_content: 0
-      devel: 0
+3. Run `phapp:env-mode-set` during deployments right before `drush cim`.

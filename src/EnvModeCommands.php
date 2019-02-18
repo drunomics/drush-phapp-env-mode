@@ -1,10 +1,9 @@
 <?php
 
-namespace Drush\Commands;
+namespace Drush\Commands\phapp_env_mode;
 
 use Drupal\Core\Config\FileStorage;
-use Drupal\Core\Config\StorageInterface;
-use Drupal\Core\Extension\ModuleInstaller;
+use Drush\Commands\DrushCommands;
 
 /**
  * Defines command for dealing with environment modes.
@@ -22,24 +21,25 @@ class EnvModeCommands extends DrushCommands {
   protected $moduleInstaller;
 
   /**
-   * EnvModeCommands constructor.
+   * Initializes depdenencies.
    *
-   * @param \Drupal\Core\Config\StorageInterface $configStorage
-   * @param \Drupal\Core\Extension\ModuleInstaller $moduleInstaller
+   * @todo: Use dependency injection once https://github.com/drush-ops/drush/issues/3938
+   *   is resolved.
    */
-  public function __construct(StorageInterface $configStorage, ModuleInstaller $moduleInstaller) {
-    $this->configStorage = $configStorage;
-    $this->moduleInstaller = $moduleInstaller;
+  protected function initDependencies() {
+    $this->configStorage = \Drupal::service('config.storage');
+    $this->moduleInstaller = \Drupal::service('module_installer');
   }
 
   /**
    * Applies the environment mode as set by PHAPP_ENV_MODE.
    *
    * @bootstrap full
-   * @command drunomics:apply-environment-mode
-   * @aliases daem
+   * @command phapp:env-mode-set
    */
   public function applyEnvironmentMode() {
+    $this->initDependencies();
+
     // Ensure config_split is installed - not that this is ignored if already
     // installed.
     $this->moduleInstaller->install(['config_split']);
