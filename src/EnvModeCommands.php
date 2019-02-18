@@ -35,7 +35,7 @@ class EnvModeCommands extends DrushCommands {
    * Applies the environment mode as set by PHAPP_ENV_MODE.
    *
    * @bootstrap full
-   * @command phapp:env-mode-set
+   * @command phapp:apply-env-mode
    */
   public function applyEnvironmentMode() {
     $this->initDependencies();

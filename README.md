@@ -24,4 +24,4 @@ In drunomics/drupal-project, all setup steps are taken care already. For others:
    
    You may use drunomics/dsk-config-split for creating suiting config.
 
-3. Run `phapp:env-mode-set` during deployments right before `drush cim`.
+3. Run `phapp:apply-env-mode` during deployments right before `drush cim`.
