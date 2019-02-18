@@ -1,0 +1,16 @@
+{
+    "name": "drunomics/phapp_env_mode",
+    "description": "Provides drush commands for applying the phapp environment mode.",
+    "type": "drupal-drush",
+    "require": {
+        "drush/drush": ">=9.0"
+    },
+    "license": "GPLv2+",
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        }
+    }
+}

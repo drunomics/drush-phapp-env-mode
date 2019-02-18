@@ -1,0 +1,5 @@
+services:
+  phapp_env_mode.commands:
+    class: \Drush\Commands\phapp_env_mode
+    tags:
+      - { name: drush.command }
