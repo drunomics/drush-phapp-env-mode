@@ -50,9 +50,15 @@ class EnvModeCommands extends DrushCommands {
     }
     else {
       $filename = "config_split.config_split.$env_mode";
-      $config_dir = new FileStorage(config_get_config_directory(CONFIG_SYNC_DIRECTORY));
-      $this->configStorage->write($filename, $config_dir->read($filename));
-      $this->logger()->success(dt('Environment mode @mode applied.', ['@mode' => $env_mode]));
+      $path = config_get_config_directory(CONFIG_SYNC_DIRECTORY);
+      if (!file_exists($path . '/' . $filename)) {
+        $this->logger()->warning(dt('Config split configuration file not found, skipping.'));
+      }
+      else {
+        $config_dir = new FileStorage($path);
+        $this->configStorage->write($filename, $config_dir->read($filename));
+        $this->logger()->success(dt('Environment mode @mode applied.', ['@mode' => $env_mode]));
+      }
     }
   }
 
