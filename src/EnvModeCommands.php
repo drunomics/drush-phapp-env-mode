@@ -3,6 +3,7 @@
 namespace Drush\Commands\phapp_env_mode;
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Site\Settings;
 use Drush\Commands\DrushCommands;
 
 /**
@@ -50,7 +51,7 @@ class EnvModeCommands extends DrushCommands {
     }
     else {
       $filename = "config_split.config_split.$env_mode";
-      $path = config_get_config_directory(CONFIG_SYNC_DIRECTORY);
+      $path = Settings::get('config_sync_directory');
       if (!file_exists($path . '/' . $filename)) {
         $this->logger()->warning(dt('Config split configuration file not found, skipping.'));
       }
