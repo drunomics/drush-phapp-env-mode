@@ -3,7 +3,7 @@
     "description": "Provides drush commands for applying the phapp environment mode.",
     "type": "drupal-drush",
     "require": {
-        "drush/drush": ">=9.0"
+        "drush/drush": ">=9 <11"
     },
     "license": "GPL-2.0-or-later",
     "autoload": {
